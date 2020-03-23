@@ -6,7 +6,7 @@ import {
 
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 import { fetchShopItems, createNewItem, getItemById } from '../api/shop-api';
-import { ShowErrorSnackBar } from '../actions/snackbar.action';
+import { ShowErrorSnackBar, ShowSuccessSnackBar } from '../actions/snackbar.action';
 
 // fetch items
 export function* watchGetShopItems() {
@@ -19,6 +19,7 @@ function* getShopItemsAsync() {
 		// delay is needed for testing
 		yield delay(200);
 		yield put(GetShopItemsSuccess(res.data));
+		yield put(ShowSuccessSnackBar({message: 'Items loaded'}))
 	} catch (e) {
 		yield put(ShowErrorSnackBar(e));
 	}
@@ -34,6 +35,7 @@ function* addNewItemAsync(action) {
 		const res = yield call(createNewItem,  action.payload);
 		yield delay(200);
 		yield put(AddNewItemSuccess(res.data));
+		yield put(ShowSuccessSnackBar({message: 'New item added!'}))
 	} catch (e) {
 		yield put(ShowErrorSnackBar(e))
 	}

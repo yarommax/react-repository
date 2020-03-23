@@ -12,11 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import Header from '../Header/Header';
 
 const styles = () => ({
-	card: {
-		height: '50vh'
+	cardContainer: {
+		height: '600px',
 	},
 	itemPhoto: {
-		width: '100%',
+		height: '100%',
 	},
 	itemName: {
 		textAlign: 'center',
@@ -42,13 +42,15 @@ class ShopItemView extends Component {
 			<>
 				<Header />
 				<Container maxWidth={'lg'}>
-					<Card className={classes.card} variant={'outlined'}>
-						<Grid container>
-							<Grid item lg={7}>
-								<img className={classes.itemPhoto} src={selectedItem.url} alt={selectedItem.name}/>
+					<Card variant={'outlined'}>
+						<Grid container className={classes.cardContainer}>
+							<Grid item lg={5}>
+								<div className={classes.itemPhoto}
+								     style={{background: `url(${selectedItem.url}) no-repeat center center`}}>
+								</div>
 							</Grid>
 
-							<Grid item lg={5} className={classes.itemDescription}>
+							<Grid item lg={7} className={classes.itemDescription}>
 								<CardContent>
 									<Typography variant="h3" className={classes.itemName}>
 										{selectedItem.name}

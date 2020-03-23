@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AssignSimCardToUser, GetSimCardList } from '../actions/sim-card.action';
 import { getAvailableSimCards } from '../selectors/simCardSelector';
+import { ShowSuccessSnackBar } from '../../../actions/snackbar.action';
 
 const styles = () => ({
 	simCardBlock: {
@@ -22,7 +23,8 @@ class AvailableSimCardList extends Component {
 	}
 
 	handleAddingSimCard(card) {
-		this.props.dispatch(AssignSimCardToUser(card))
+		this.props.dispatch(AssignSimCardToUser(card));
+		this.props.dispatch(ShowSuccessSnackBar({message: 'Sim card added!'}));
 	}
 
 	render() {

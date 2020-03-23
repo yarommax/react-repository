@@ -12,12 +12,13 @@ import { OnChangeActiveStep } from './actions/sim-card.action';
 import UserInfoForm from './components/UserInfoForm';
 import SimCardListContainer from './components/SimCardListContainer';
 import Summary from './components/Summary';
+import { ShowSuccessSnackBar } from '../../actions/snackbar.action';
 
 function getSteps() {
 	return [
 		'Enter user information',
 		'Choose sim card',
-		'Show Summary information',
+		'View Summary information',
 	];
 }
 
@@ -61,6 +62,9 @@ class SimCardModule extends Component {
 
 		const handleNext = () => {
 			dispatch(OnChangeActiveStep(activeStep > 3 ? 0 : activeStep + 1));
+			if (activeStep === 2) {
+				this.props.dispatch(ShowSuccessSnackBar({message: 'All user info saved!'}));
+			}
 		};
 
 		const handleBack = () => {

@@ -3,6 +3,7 @@ import { TextField, FormControl,Button, Grid, withStyles } from '@material-ui/co
 import { connect } from 'react-redux';
 import { OnChangeUserInfo } from '../actions/sim-card.action';
 import Typography from '@material-ui/core/Typography';
+import { ShowSuccessSnackBar } from '../../../actions/snackbar.action';
 
 const styles = theme => ({
 	root: {
@@ -61,6 +62,7 @@ class UserInfoForm extends Component {
 			...this.state,
 		};
 		this.props.dispatch(OnChangeUserInfo(userInfo));
+		this.props.dispatch(ShowSuccessSnackBar({message: 'Information saved!'}));
 	}
 
 	render() {
