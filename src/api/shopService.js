@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://10.104.1.49:4000/api/v1/';
+const apiUrl = '/api/v1/';
 
 export const fetchShopItems = () => {
 	return axios.get(`${apiUrl}catalog/list`)

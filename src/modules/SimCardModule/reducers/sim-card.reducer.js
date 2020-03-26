@@ -1,5 +1,5 @@
 import { ActionTypes } from '../actions/sim-card.action';
-import SimCardStatus from '../../../utils/sim-card-status';
+import { SimCardStatusConstant } from '../../../constant/simCardStatusConstant';
 
 export const initialState = {
 	activeStep: 0,
@@ -16,17 +16,17 @@ export const initialState = {
 		{
 			simNumber: '8668456186515618',
 			phoneNumber: '+375297894561',
-			status: SimCardStatus.ACTIVE
+			status: SimCardStatusConstant.ACTIVE
 		},
 		{
 			simNumber: '8868456186515618',
 			phoneNumber: '+375296651231',
-			status: SimCardStatus.ACTIVE
+			status: SimCardStatusConstant.ACTIVE
 		},
 		{
 			simNumber: '8968456186515618',
 			phoneNumber: '+375297774445',
-			status: SimCardStatus.ACTIVE
+			status: SimCardStatusConstant.ACTIVE
 		},
 	],
 	loading: false,
@@ -61,7 +61,7 @@ const SimCardReducer = (state = initialState, action) => {
 				userInfo: { ...state.userInfo, userSimCards: [...state.userInfo.userSimCards, action.payload] },
 				availableSimCardList: state.availableSimCardList.map(card => {
 					if (card.simNumber === action.payload.simNumber) {
-						return {...card, status: SimCardStatus.ASSIGNED }
+						return {...card, status: SimCardStatusConstant.ASSIGNED }
 					} return card
 				})
 			};

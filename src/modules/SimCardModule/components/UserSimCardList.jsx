@@ -1,10 +1,14 @@
-import {
-	Divider, List, ListItem,
-	ListItemIcon, ListItemText, withStyles
-} from '@material-ui/core';
-import SimCardIcon from '@material-ui/icons/SimCard';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import {
+	Divider,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	withStyles
+} from '@material-ui/core';
+import SimCardIcon from '@material-ui/icons/SimCard';
 import { getUserSimCards } from '../selectors/simCardSelector';
 
 const styles = () => ({

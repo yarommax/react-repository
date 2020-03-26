@@ -1,14 +1,20 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
-	Divider, List, ListItem,
-	ListItemIcon, ListItemText, ListItemSecondaryAction, IconButton, withStyles
+	Divider,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	ListItemSecondaryAction,
+	IconButton,
+	withStyles
 } from '@material-ui/core';
 import SimCardIcon from '@material-ui/icons/SimCard';
 import AddIcon from '@material-ui/icons/Add';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { AssignSimCardToUser, GetSimCardList } from '../actions/sim-card.action';
 import { getAvailableSimCards } from '../selectors/simCardSelector';
-import { ShowSuccessSnackBar } from '../../../actions/snackbar.action';
+import { showSuccessSnackBar } from '../../../actions/snackbarAction';
 
 const styles = () => ({
 	simCardBlock: {
@@ -24,7 +30,7 @@ class AvailableSimCardList extends Component {
 
 	handleAddingSimCard(card) {
 		this.props.dispatch(AssignSimCardToUser(card));
-		this.props.dispatch(ShowSuccessSnackBar({message: 'Sim card added!'}));
+		this.props.dispatch(showSuccessSnackBar({message: 'Sim card added!'}));
 	}
 
 	render() {
@@ -40,8 +46,8 @@ class AvailableSimCardList extends Component {
 											<SimCardIcon />
 										</ListItemIcon>
 										<ListItemText
-												primary={card.phoneNumber}
-												secondary={card.simNumber}
+											primary={card.phoneNumber}
+											secondary={card.simNumber}
 										/>
 										<ListItemSecondaryAction>
 											<IconButton

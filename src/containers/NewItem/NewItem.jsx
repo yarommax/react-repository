@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import compose from 'recompose/compose';
-import { Container, Card, Grid,
-	Typography, Button, TextField, withStyles, Select, InputLabel, MenuItem, FormControl
+import {
+	Container,
+	Card,
+	Grid,
+	Typography,
+	Button,
+	TextField,
+	withStyles,
+	Select,
+	InputLabel,
+	MenuItem,
+	FormControl
 } from '@material-ui/core';
-
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { AddNewItem } from '../../actions/shop-items.action';
+import { addNewItem } from '../../actions/shopItemsAction';
 import Header from '../../components/Header/Header';
-
-
-const Categories = {
-	'Nike': 'Nike',
-	'Adidas': 'Adidas',
-	'Puma': 'Puma',
-};
+import { NIKE, ADIDAS, PUMA} from '../../constant/shoesCategoryConstant';
 
 const styles = theme => ({
 	cardTitle: {
@@ -61,7 +64,7 @@ class NewItem extends Component {
 		const newItem = {
 			...this.state,
 		};
-		this.props.dispatch(AddNewItem(newItem));
+		this.props.dispatch(addNewItem(newItem));
 	}
 
 	render() {
@@ -70,51 +73,51 @@ class NewItem extends Component {
 		return (
 			<>
 				<Header />
-				<Container maxWidth={'lg'}>
+				<Container maxWidth="lg">
 					<Grid container>
 						<Grid item lg={8} sm={12}>
 							<Card variant="outlined" className={classes.formWrapper}>
 								<Typography
-										variant="h3"
-										className={classes.cardTitle}
+									variant="h3"
+									className={classes.cardTitle}
 								>Add new item</Typography>
 								<form>
 									<TextField
-											name='name'
-											label='Item name'
-											variant={'outlined'}
-											className={classes.textField}
-											onChange={this.onChangeField}
+										name="name"
+										label="Item name"
+										variant="outlined"
+										className={classes.textField}
+										onChange={this.onChangeField}
 									/>
-
 									<TextField
-											name='cost'
-											label='Cost'
-											variant={'outlined'}
-											className={classes.textField}
-											onChange={this.onChangeField}
+										name="cost"
+										label="Cost"
+										variant="outlined"
+										className={classes.textField}
+										onChange={this.onChangeField}
 									/>
-									<FormControl variant={'outlined'} className={classes.formControl}>
+									<FormControl variant="outlined" className={classes.formControl}>
 										<InputLabel
-												ref={this.labelRef}
-												id="category-label">Category</InputLabel>
+											ref={this.labelRef}
+											id="category-label"
+										>Category</InputLabel>
 										<Select
-												name="category"
-												value={this.state.category}
-												onChange={this.onChangeField}
-												labelWidth={65}
+											name="category"
+											value={this.state.category}
+											onChange={this.onChangeField}
+											labelWidth={65}
 										>
-											<MenuItem value={Categories.Nike}>Nike</MenuItem>
-											<MenuItem value={Categories.Adidas}>Adidas</MenuItem>
-											<MenuItem value={Categories.Puma}>Puma</MenuItem>
+											<MenuItem value={NIKE}>Nike</MenuItem>
+											<MenuItem value={ADIDAS}>Adidas</MenuItem>
+											<MenuItem value={PUMA}>Puma</MenuItem>
 										</Select>
 									</FormControl>
 
 									<Button
-											size='large'
-											variant='outlined'
-											className={classes.saveButton}
-											onClick={this.onSubmit}
+										size="large"
+										variant="outlined"
+										className={classes.saveButton}
+										onClick={this.onSubmit}
 									>Save</Button>
 								</form>
 							</Card>
@@ -138,6 +141,6 @@ const mapStateToProps = store => {
 };
 
 export default compose(
-	withStyles(styles, { name: 'NewItem' }),
+	withStyles(styles, NewItem),
 	connect(mapStateToProps)
 )(withRouter(NewItem));

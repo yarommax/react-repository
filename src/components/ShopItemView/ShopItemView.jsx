@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { GetItemById } from '../../actions/shop-items.action';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Container from '@material-ui/core/Container';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import {
+	withStyles,
+	Container,
+	Card,
+	CardContent,
+	Grid,
+	Typography,
+} from '@material-ui/core';
+import { getItemById } from '../../actions/shopItemsAction';
 import Header from '../Header/Header';
 
 const styles = () => ({
@@ -32,8 +34,8 @@ const styles = () => ({
 
 class ShopItemView extends Component {
 	componentDidMount() {
-		const id = this.props.location.state.id;
-		this.props.dispatch(GetItemById(id));
+		const { id, dispatch }= this.props.location.state;
+		dispatch(getItemById(id));
 	}
 
 	render() {
@@ -41,12 +43,13 @@ class ShopItemView extends Component {
 		return (
 			<>
 				<Header />
-				<Container maxWidth={'lg'}>
-					<Card variant={'outlined'}>
+				<Container maxWidth="lg">
+					<Card variant="outlined">
 						<Grid container className={classes.cardContainer}>
 							<Grid item lg={5}>
-								<div className={classes.itemPhoto}
-								     style={{background: `url(${selectedItem.url}) no-repeat center center`}}>
+								<div
+									className={classes.itemPhoto}
+									style={{background: `url(${selectedItem.url}) no-repeat center center`}}>
 								</div>
 							</Grid>
 

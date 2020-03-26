@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import CardActions from '@material-ui/core/CardActions';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { withRouter } from 'react-router-dom';
+import {
+	Card,
+	Typography,
+		CardActions,
+		Box,
+		IconButton,
+		Grid,
+		withStyles
+} from '@material-ui/core';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
-import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
-import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
 	cardWrapper: {
@@ -62,9 +64,9 @@ class ShopItemCard extends Component {
 
 					<Box>
 						<Typography className={classes.description} color="textSecondary">
-							{item.name}
+							{item.category} {item.name}
 						</Typography>
-						<Typography className={classes.price} color="textPrimary" gutterBottom>
+						<Typography color="textPrimary" gutterBottom>
 							{item.cost}
 						</Typography>
 					</Box>

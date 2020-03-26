@@ -5,16 +5,17 @@ import ShopItemView from './components/ShopItemView/ShopItemView';
 import NewItem from './containers/NewItem/NewItem';
 import SimCardModule from './modules/SimCardModule/SimCardModule';
 import SnackbarService from './components/SnackBar/Snackbar';
+import { ROUTES } from './constant/routeConstant'
 
 const Routes = () => (
 		<>
 			<SnackbarService />
 			<Router>
 				<Switch>
-					<Route exact path={'/'} component={ShopList}/>
-					<Route path={'/item/new'} component={NewItem} />
-					<Route path={'/item'} component={ShopItemView} />
-					<Route path={'/test'} component={SimCardModule} />
+					<Route exact path={ROUTES.SHOP_LIST} component={ShopList}/>
+					<Route path={ROUTES.NEW_ITEM} component={NewItem} />
+					<Route path={ROUTES.SHOP_ITEM} component={ShopItemView} />
+					<Route path={ROUTES.TEST} component={SimCardModule} />
 				</Switch>
 			</Router>
 		</>

@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { Container, withStyles, Card, CardContent, CardActions } from '@material-ui/core';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { OnChangeActiveStep } from './actions/sim-card.action';
+import {
+	Container,
+	withStyles,
+	Card,
+	CardContent,
+	CardActions,
+	Stepper,
+	Step,
+	StepLabel,
+	Button,
+	Typography,} from '@material-ui/core';
 import UserInfoForm from './components/UserInfoForm';
-import SimCardListContainer from './components/SimCardListContainer';
 import Summary from './components/Summary';
-import { ShowSuccessSnackBar } from '../../actions/snackbar.action';
+import SimCardListContainer from './components/SimCardListContainer';
+import { OnChangeActiveStep } from './actions/sim-card.action';
+import { showSuccessSnackBar } from '../../actions/snackbarAction';
 
 function getSteps() {
 	return [
@@ -63,7 +68,7 @@ class SimCardModule extends Component {
 		const handleNext = () => {
 			dispatch(OnChangeActiveStep(activeStep > 3 ? 0 : activeStep + 1));
 			if (activeStep === 2) {
-				this.props.dispatch(ShowSuccessSnackBar({message: 'All user info saved!'}));
+				this.props.dispatch(showSuccessSnackBar({message: 'All user info saved!'}));
 			}
 		};
 
@@ -82,23 +87,23 @@ class SimCardModule extends Component {
 						<div>
 							<Stepper activeStep={activeStep} alternativeLabel>
 								{steps.map(label => (
-										<Step key={label}>
-											<StepLabel>{label}</StepLabel>
-										</Step>
+									<Step key={label}>
+										<StepLabel>{label}</StepLabel>
+									</Step>
 								))}
 							</Stepper>
 							<div>
 								{activeStep === steps.length ? (
-										<div>
-											<Typography align={'center'} variant={'h5'}
-													className={classes.instructions}>All steps completed</Typography>
-											<Button
-													className={classes.resetButton}
-													onClick={handleReset}
-													color="default"
-													variant="contained"
-											>Reset Data</Button>
-										</div>
+									<div>
+										<Typography align="center" variant="h5"
+												className={classes.instructions}>All steps completed</Typography>
+										<Button
+												className={classes.resetButton}
+												onClick={handleReset}
+												color="default"
+												variant="contained"
+										>Reset Data</Button>
+									</div>
 								) : (
 									getStepContent(activeStep)
 								)}
@@ -109,10 +114,10 @@ class SimCardModule extends Component {
 					<CardActions>
 						<div className={classes.actionButtons}>
 							<Button
-									disabled={activeStep === 0}
-									onClick={handleBack}
-									className={classes.backButton}
-									variant="contained"
+								disabled={activeStep === 0}
+								onClick={handleBack}
+								className={classes.backButton}
+								variant="contained"
 							>
 								Back
 							</Button>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
-import rootReducer from './reducers/root-reducer';
+import rootReducer from './reducers/rootReducer';
 import PropTypes from 'prop-types';
-import logger from './utils/logger';
+import stateLogger from './utils/stateLogger';
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas';
 
@@ -18,13 +18,13 @@ if (window.navigator.userAgent.includes('Chrome')) {
 	store = createStore(
 		rootReducer,
 		compose(
-			applyMiddleware(logger, sagaMiddleware), reduxDevTools
+			applyMiddleware(stateLogger, sagaMiddleware), reduxDevTools
 		),
 	);
 } else {
 	store = createStore(
 		rootReducer,
-		applyMiddleware(logger, sagaMiddleware),
+		applyMiddleware(stateLogger, sagaMiddleware),
 	);
 }
 

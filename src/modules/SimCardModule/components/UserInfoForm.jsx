@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { TextField, FormControl,Button, Grid, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
+import {
+	TextField,
+	FormControl,
+	Button,
+	Grid,
+	Typography,
+	withStyles
+} from '@material-ui/core';
 import { OnChangeUserInfo } from '../actions/sim-card.action';
-import Typography from '@material-ui/core/Typography';
-import { ShowSuccessSnackBar } from '../../../actions/snackbar.action';
+import { showSuccessSnackBar } from '../../../actions/snackbarAction';
 
 const styles = theme => ({
 	root: {
@@ -62,7 +68,7 @@ class UserInfoForm extends Component {
 			...this.state,
 		};
 		this.props.dispatch(OnChangeUserInfo(userInfo));
-		this.props.dispatch(ShowSuccessSnackBar({message: 'Information saved!'}));
+		this.props.dispatch(showSuccessSnackBar({message: 'Information saved!'}));
 	}
 
 	render() {
@@ -71,8 +77,8 @@ class UserInfoForm extends Component {
 		return (
 				<>
 					<Typography
-							align={'center'}
-							variant={'h5'}
+						align="center"
+						variant="h5"
 					>User information</Typography>
 					<form
 							className={classes.root}
@@ -110,7 +116,7 @@ class UserInfoForm extends Component {
 											name="birthDate"
 											label="BirthDate"
 											variant="outlined"
-											placeholder={'dd/mm/yyyy'}
+											placeholder="dd/mm/yyyy"
 											value={this.state.birthDate}
 											className={classes.textField}
 											onChange={this.onChangeField}
@@ -152,8 +158,8 @@ class UserInfoForm extends Component {
 								</FormControl>
 
 								<Button
-										color={'secondary'}
-										variant={'outlined'}
+										color="secondary"
+										variant="outlined"
 										onClick={this.resetForm}
 								>Clear</Button>
 

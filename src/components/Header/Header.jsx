@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-
-import Button from '@material-ui/core/Button';
-import Badge from '@material-ui/core/Badge';
-
+import { withStyles } from '@material-ui/core';
+import {
+	Container,
+	Grid,
+	Toolbar,
+	Typography,
+	IconButton,
+	Button,
+	Badge,
+} from '@material-ui/core';
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
@@ -82,12 +82,12 @@ class Header extends Component {
             <div className={classes.toolbarMenu}>
               { SECTIONS.length > 0 && SECTIONS.map(section => (
                 <Link
-                    color="inherit"
-                    key={section.name}
-                    variant="body2"
-                    href="#"
-                    className={classes.toolbarLink}
-                    to={section.url}
+                  color="inherit"
+                  key={section.name}
+                  variant="body2"
+                  href="#"
+                  className={classes.toolbarLink}
+                  to={section.url}
                 >
                   {section.name}
                 </Link>

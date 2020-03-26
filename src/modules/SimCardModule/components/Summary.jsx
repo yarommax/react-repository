@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import Typography from '@material-ui/core/Typography';
-import { Divider, List, ListItem, ListItemText, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
+import {
+	Divider,
+	List,
+	ListItem,
+	ListItemText,
+	Typography,
+	withStyles
+} from '@material-ui/core';
 import { getUserInfo } from '../selectors/simCardSelector';
 
 const styles = () => {
@@ -15,7 +21,7 @@ class Summary extends Component {
 
 		return (
 			<div>
-				<Typography align={'center'} variant={'h5'}>User info summary</Typography>
+				<Typography align="center" variant="h5">User info summary</Typography>
 				{
 					userInfo ?
 						<List>
@@ -23,29 +29,29 @@ class Summary extends Component {
 								userObjectKeys.map((key, i) => {
 									if (key === 'userSimCards') {
 										return (
-												<div key={i}>
-													{
-														userInfo[key].map((card, cardIndex) => (
-																<div key={card.simNumber}>
+											<div key={i}>
+												{
+													userInfo[key].map((card, cardIndex) => (
+														<div key={card.simNumber}>
 
-																	<ListItem>
-																		<ListItemText
-																				primary={`Sim-card - ${cardIndex}`}
-																		/>
-																		<ListItemText
-																				primary={card.simNumber}
-																				secondary={'simNumber'}
-																		/>
-																		<ListItemText
-																				primary={card.phoneNumber}
-																				secondary={'phoneNumber'}
-																		/>
-																	</ListItem>
-																	<Divider/>
-																</div>
-														))
-													}
-												</div>
+															<ListItem>
+																<ListItemText
+																	primary={`Sim-card - ${cardIndex}`}
+																/>
+																<ListItemText
+																	primary={card.simNumber}
+																	secondary="simNumber"
+																/>
+																<ListItemText
+																	primary={card.phoneNumber}
+																	secondary="phoneNumber"
+																/>
+															</ListItem>
+															<Divider/>
+														</div>
+													))
+												}
+											</div>
 										)
 									}
 									return (
@@ -62,7 +68,7 @@ class Summary extends Component {
 								})
 							}
 						</List> :
-						<Typography align={'center'} variant={'subtitle2'}>There is no user info</Typography>
+						<Typography align="center" variant="subtitle2">There is no user info</Typography>
 				}
 			</div>
 		)
