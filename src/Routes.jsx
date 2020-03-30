@@ -14,7 +14,7 @@ const Routes = () => (
 				<Switch>
 					<Route exact path={ROUTES.SHOP_LIST} component={ShopListContainer}/>
 					<Route path={ROUTES.NEW_ITEM} component={NewItem} />
-					<Route path={`${ROUTES.SHOP_ITEM}/:id`} component={ShopItemViewContainer} />
+					<Route path={ROUTES.SHOP_ITEM_ID} component={ShopItemViewContainer} />
 					<Route path={ROUTES.TEST} component={SimCardModule} />
 				</Switch>
 			</Router>

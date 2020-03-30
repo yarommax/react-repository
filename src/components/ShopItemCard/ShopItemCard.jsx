@@ -14,7 +14,7 @@ import StyledItemCardWrapper from './styled/StyledItemCardWrapper';
 import StyledCard from './styled/StyledCard';
 import { ROUTES } from '../../constant/routeConstant';
 
-const ShopItemCard = ({item, ...otherProps}) => {
+const ShopItemCard = ({item}) => {
 	const history = useHistory();
 	function handleOpenItemView() {
 		history.push(`${ROUTES.SHOP_ITEM}/${item._id}`);
