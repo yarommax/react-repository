@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import compose from 'recompose/compose';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { useParams, withRouter } from 'react-router';
 import {
 	withStyles,
 	Container,
@@ -10,7 +9,6 @@ import {
 	Grid,
 	Typography,
 } from '@material-ui/core';
-import { getItemById } from '../../actions/shopItemsAction';
 import Header from '../Header/Header';
 
 const styles = () => ({
@@ -32,53 +30,43 @@ const styles = () => ({
 	}
 });
 
-class ShopItemView extends Component {
-	componentDidMount() {
-		const { id, dispatch }= this.props.location.state;
-		dispatch(getItemById(id));
-	}
+const ShopItemView = ({getItemById, selectedItem, classes}) => {
+	const { id } = useParams();
+	useEffect(() => {
+		getItemById(id);
+	}, [id]);
 
-	render() {
-		const { classes, selectedItem } = this.props;
-		return (
-			<>
-				<Header />
-				<Container maxWidth="lg">
-					<Card variant="outlined">
-						<Grid container className={classes.cardContainer}>
-							<Grid item lg={5}>
-								<div
-									className={classes.itemPhoto}
-									style={{background: `url(${selectedItem.url}) no-repeat center center`}}>
-								</div>
-							</Grid>
-
-							<Grid item lg={7} className={classes.itemDescription}>
-								<CardContent>
-									<Typography variant="h3" className={classes.itemName}>
-										{selectedItem.name}
-									</Typography>
-									<Typography variant="h5" color="textSecondary" className={classes.descField}>
-										Category: {selectedItem.category}
-									</Typography>
-									<Typography variant="h5" color="textSecondary" className={classes.descField}>
-										Cost: {selectedItem.cost} $
-									</Typography>
-								</CardContent>
-							</Grid>
+	return (
+		<>
+			<Header />
+			<Container maxWidth="lg">
+				<Card variant="outlined">
+					<Grid container className={classes.cardContainer}>
+						<Grid item lg={5}>
+							<div
+								className={classes.itemPhoto}
+								style={{background: `url(${selectedItem.url}) no-repeat center center`}}>
+							</div>
 						</Grid>
-					</Card>
-				</Container>
-			</>
-		)
-	}
-}
 
-const mapStateToProps = store => ({
-	...store.shopItems,
-});
+						<Grid item lg={7} className={classes.itemDescription}>
+							<CardContent>
+								<Typography variant="h3" className={classes.itemName}>
+									{selectedItem.name}
+								</Typography>
+								<Typography variant="h5" color="textSecondary" className={classes.descField}>
+									Category: {selectedItem.category}
+								</Typography>
+								<Typography variant="h5" color="textSecondary" className={classes.descField}>
+									Cost: {selectedItem.cost} $
+								</Typography>
+							</CardContent>
+						</Grid>
+					</Grid>
+				</Card>
+			</Container>
+		</>
+	)
+};
 
-export default compose(
-	withStyles(styles),
-	connect(mapStateToProps),
-)(withRouter(ShopItemView))
+export default compose(withStyles(styles))(withRouter(ShopItemView))

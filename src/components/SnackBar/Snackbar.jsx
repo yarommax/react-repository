@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Icon, Snackbar, IconButton } from '@material-ui/core';
 import { clearSnackBar } from '../../actions/snackbarAction';
 import { Alert } from './Alert';
@@ -14,7 +14,7 @@ export default function SnackbarService() {
 		dispatch(clearSnackBar());
 	}
 
-	return (
+	return (message && type && (
 			<Snackbar
 				anchorOrigin={{
 					vertical: "top",
@@ -39,5 +39,6 @@ export default function SnackbarService() {
 					{message}
 				</Alert>
 			</Snackbar>
+		)
 	)
 }

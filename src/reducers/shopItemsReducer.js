@@ -1,13 +1,10 @@
 import {
 	GET_SHOP_ITEMS,
 	GET_SHOP_ITEMS_SUCCESS,
-	GET_SHOP_ITEMS_ERROR,
 	GET_ITEM_BY_ID,
 	GET_ITEM_BY_ID_SUCCESS,
-	GET_ITEM_BY_ID_ERROR,
 	ADD_NEW_ITEM,
 	ADD_NEW_ITEM_SUCCESS,
-	ADD_NEW_ITEM_ERROR,
 } from '../constant/shopItemsConstant';
 
 export const initialState = {
@@ -17,9 +14,7 @@ export const initialState = {
 		cost: 0,
 		category: 0,
 	},
-	selectedItem: {
-		id: '',
-	},
+	selectedItem: {},
 	loading: false,
 };
 
@@ -36,12 +31,6 @@ const ShopItemsReducer = (state = initialState, action) => {
 				items: action.payload,
 				loading: false,
 			};
-		case GET_SHOP_ITEMS_ERROR:
-			return {
-				...state,
-				errors: action.payload,
-				loading: false,
-			};
 		case ADD_NEW_ITEM:
 			return {
 				...state,
@@ -54,12 +43,6 @@ const ShopItemsReducer = (state = initialState, action) => {
 				newItem: action.payload,
 				loading: false,
 			};
-		case ADD_NEW_ITEM_ERROR:
-			return {
-				...state,
-				errors: action.payload,
-				loading: false,
-			};
 		case GET_ITEM_BY_ID:
 			return {
 				...state,
@@ -69,12 +52,6 @@ const ShopItemsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				selectedItem: action.payload,
-				loading: false,
-			};
-		case GET_ITEM_BY_ID_ERROR:
-			return {
-				...state,
-				errors: action.payload,
 				loading: false,
 			};
 		default:
