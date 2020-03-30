@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { addNewItem } from '../../actions/shopItemsAction';
-import Header from '../../components/Header/Header';
+import Header from '../Header/Header';
 import { NIKE, ADIDAS, PUMA} from '../../constant/shoesCategoryConstant';
 
 const styles = theme => ({

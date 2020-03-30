@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import ShopItemCard from '../../components/ShopItemCard/ShopItemCard';
-import Header from '../../components/Header/Header';
-import { Loader } from '../../components/Loader/Loader';
+import ShopItemCard from '../ShopItemCard/ShopItemCard';
+import Header from '../Header/Header';
+import { Loader } from '../Loader/Loader';
 
 const ShopList = ({getShopItems, items, loading}) => {
 	useEffect(() => {
