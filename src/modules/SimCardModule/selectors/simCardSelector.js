@@ -1,4 +1,4 @@
-import { SimCardStatusConstant } from '../../../constant/simCardStatusConstant';
+import { SimCardStatusConstant } from '../constant/simCardStatusConstant';
 
 export const getUserInfo = (store) => store.simCard.userInfo;
 export const getUserSimCards = (store) => store.simCard.userInfo.userSimCards;

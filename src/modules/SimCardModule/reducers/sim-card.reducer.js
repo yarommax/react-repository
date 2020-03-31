@@ -1,5 +1,5 @@
-import { ActionTypes } from '../actions/sim-card.action';
-import { SimCardStatusConstant } from '../../../constant/simCardStatusConstant';
+import { SimCardStatusConstant } from '../constant/simCardStatusConstant';
+import { ASSIGN_SIM_CARD_TO_USER, ON_CHANGE_USER_INFO } from '../constant/simCardActionConstant';
 
 export const initialState = {
 	activeStep: 0,
@@ -34,28 +34,12 @@ export const initialState = {
 
 const SimCardReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ActionTypes.ON_CHANGE_ACTIVE_STEP:
-			if (action.payload === 0) {
-				return {
-					...initialState,
-					activeStep: action.payload,
-				};
-			}
-			return {
-				...state,
-				activeStep: action.payload,
-			};
-		case ActionTypes.ON_CHANGE_USER_INFO:
+		case ON_CHANGE_USER_INFO:
 			return {
 				...state,
 				userInfo: {...state.userInfo, ...action.payload},
 			};
-		case ActionTypes.CHANGE_SIM_CARD_STATUS:
-			return {
-				...state,
-				selectedSimCard: {...action.payload}
-			};
-		case ActionTypes.ASSIGN_SIM_CARD_TO_USER:
+		case ASSIGN_SIM_CARD_TO_USER:
 			return {
 				...state,
 				userInfo: { ...state.userInfo, userSimCards: [...state.userInfo.userSimCards, action.payload] },
