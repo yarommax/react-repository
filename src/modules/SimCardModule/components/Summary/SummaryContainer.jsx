@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Summary from './Summary';
-import { getUserInfo } from '../selectors/simCardSelector';
+import { getUserInfo } from '../../selectors/simCardSelector';
 
 const mapStateToProps = store => ({
 	userInfo: getUserInfo(store),

@@ -2,25 +2,26 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 import {
 	Container,
-	withStyles,
 	Card,
 	CardContent,
-	CardActions,
 	Stepper,
 	Step,
 	StepLabel,
 	Button,
 	Typography,
 } from '@material-ui/core';
-import UserInfoFormContainer from './components/UserInfoForm/UserInfoFormContainer';
-import SimCardListContainer from './components/SimCardListContainer/SimCardListContainer';
-import SummaryContainer from './components/SummaryContainer';
+import UserInfoFormContainer from './UserInfoForm/UserInfoFormContainer';
+import SimCardListContainer from './SimCardListContainer/SimCardListContainer';
+import SummaryContainer from './Summary/SummaryContainer';
+import { SIM_CARD_STEP, SUMMARY_INFO, USER_INFO_STEP } from '../constant/stepConstant';
+import StyledCardActions from './styled/StyledCardActions';
+import StyledResetButton from './styled/StyledResetButton';
 
 const getSteps = () => {
 	return [
-		'Enter user information',
-		'Choose sim card',
-		'View Summary information',
+		USER_INFO_STEP,
+		SIM_CARD_STEP,
+		SUMMARY_INFO,
 	];
 };
 
@@ -37,33 +38,13 @@ const getStepContent = (stepIndex) => {
 	}
 };
 
-const styles = theme => ({
-	root: {
-		width: '100%',
-	},
-	actionButtons: {
-		margin: '20px auto',
-	},
-	backButton: {
-		marginRight: theme.spacing(1),
-	},
-	resetButton: {
-		display: 'block',
-		margin: '0px auto',
-	},
-	instructions: {
-		marginTop: theme.spacing(1),
-		marginBottom: theme.spacing(1),
-	},
-});
-
-const SimCardModule = ({classes}) => {
+const SimCardModule = () => {
 	const [activeStep, setActiveStep] = useState(0);
 	const steps = getSteps();
 
 	return (
 		<Container>
-			<Card className={classes.root}>
+			<Card>
 				<CardContent>
 					<div>
 						<Stepper
@@ -82,18 +63,17 @@ const SimCardModule = ({classes}) => {
 									<Typography
 										align="center"
 										variant="h5"
-										className={classes.instructions}
+										gutterBottom
 									>
 										All steps completed
 									</Typography>
-									<Button
-										className={classes.resetButton}
+									<StyledResetButton
 										onClick={() => setActiveStep(0)}
 										color="default"
 										variant="contained"
 									>
 										Reset Data
-									</Button>
+									</StyledResetButton>
 								</div>
 							) : (
 								getStepContent(activeStep)
@@ -102,12 +82,11 @@ const SimCardModule = ({classes}) => {
 					</div>
 				</CardContent>
 
-				<CardActions>
-					<div className={classes.actionButtons}>
+				<StyledCardActions>
+					<div>
 						<Button
 							disabled={activeStep === 0}
 							onClick={() => setActiveStep(activeStep-1)}
-							className={classes.backButton}
 							variant="contained"
 						>
 							Back
@@ -121,10 +100,10 @@ const SimCardModule = ({classes}) => {
 							{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
 						</Button>
 					</div>
-				</CardActions>
+				</StyledCardActions>
 			</Card>
 		</Container>
 	)
 };
 
-export default withStyles(styles)(withRouter(SimCardModule));
+export default withRouter(SimCardModule);
