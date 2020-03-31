@@ -23,7 +23,6 @@ export function* watchShopItems() {
 function* getShopItemsAsync() {
 	try {
 		const res = yield call(fetchShopItems);
-		// delay is needed for testing
 		yield delay(200);
 		yield put(getShopItemsSuccess(res.data));
 	} catch (e) {
