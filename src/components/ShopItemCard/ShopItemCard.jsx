@@ -6,13 +6,13 @@ import {
 	Box,
 	IconButton,
 	Grid,
-	CardMedia,
 } from '@material-ui/core';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import StyledItemCardWrapper from './styled/StyledItemCardWrapper';
 import StyledCard from './styled/StyledCard';
 import { ROUTES } from '../../constant/routeConstant';
+import StyledCardMedia from '../ShopItemView/styled/StyledCardMedia';
 
 const ShopItemCard = ({item}) => {
 	const history = useHistory();
@@ -24,10 +24,7 @@ const ShopItemCard = ({item}) => {
 		<Grid item lg={3} md={4} sm={6} xs={12}>
 			<StyledItemCardWrapper>
 				<StyledCard onClick={handleOpenItemView}>
-					<CardMedia
-						style={{height: '100%'}}
-						image={item.url}
-					/>
+					<StyledCardMedia image={item.url} />
 					<CardActions>
 						<IconButton>
 							<FavoriteBorderRoundedIcon />

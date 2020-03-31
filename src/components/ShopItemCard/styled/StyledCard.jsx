@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
 
 const StyledCard = styled(Card)`
 	height: 300px;

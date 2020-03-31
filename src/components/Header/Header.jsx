@@ -1,14 +1,11 @@
 import React from 'react';
-import {
-	Container,
-	Typography,
-} from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import StyledHeader from './styled/StyledHeader';
 import StyledLogo from './styled/StyledLogo';
 import HeaderToolbar from './Toolbar';
 import { ROUTES } from '../../constant/routeConstant';
 
-export function Header() {
+const Header = () => {
 	return (
 		<StyledHeader>
 			<Container maxWidth="lg">
@@ -19,6 +16,6 @@ export function Header() {
 			</Container>
 		</StyledHeader>
 	)
-}
+};
 
 export default Header;

@@ -1,72 +1,50 @@
 import React, { useEffect } from 'react';
-import compose from 'recompose/compose';
 import { useParams, withRouter } from 'react-router';
 import {
-	withStyles,
 	Container,
-	Card,
-	CardContent,
 	Grid,
 	Typography,
+	Card,
+	CardContent,
 } from '@material-ui/core';
+import StyledCardMedia from './styled/StyledCardMedia';
+import StyledGrid from './styled/StyledCardView';
 import Header from '../Header/Header';
 
-const styles = () => ({
-	cardContainer: {
-		height: '600px',
-	},
-	itemPhoto: {
-		height: '100%',
-	},
-	itemName: {
-		textAlign: 'center',
-		padding: '10px 0'
-	},
-	itemDescription: {
-		padding: '50px 10px'
-	},
-	descField: {
-		padding: '20px 0'
-	}
-});
-
-const ShopItemView = ({getItemById, selectedItem, classes}) => {
+const ShopItemView = ({getItemById, selectedItem}) => {
 	const { id } = useParams();
 	useEffect(() => {
 		getItemById(id);
-	}, [id]);
+	}, [id, getItemById]);
 
 	return (
 		<>
 			<Header />
 			<Container maxWidth="lg">
 				<Card variant="outlined">
-					<Grid container className={classes.cardContainer}>
+					<StyledGrid container>
 						<Grid item lg={5}>
-							<div
-								className={classes.itemPhoto}
-								style={{background: `url(${selectedItem.url}) no-repeat center center`}}>
-							</div>
+							{selectedItem && selectedItem.url && <StyledCardMedia image={selectedItem.url} />}
 						</Grid>
 
-						<Grid item lg={7} className={classes.itemDescription}>
+						<Grid item lg={7}>
 							<CardContent>
-								<Typography variant="h3" className={classes.itemName}>
+								<Typography variant="h3" gutterBottom align="center">
 									{selectedItem.name}
 								</Typography>
-								<Typography variant="h5" color="textSecondary" className={classes.descField}>
+								<Typography variant="h5" gutterBottom color="textSecondary">
 									Category: {selectedItem.category}
 								</Typography>
-								<Typography variant="h5" color="textSecondary" className={classes.descField}>
+								<Typography variant="h5" gutterBottom color="textSecondary">
 									Cost: {selectedItem.cost} $
 								</Typography>
 							</CardContent>
 						</Grid>
-					</Grid>
+					</StyledGrid>
 				</Card>
 			</Container>
 		</>
 	)
 };
 
-export default compose(withStyles(styles))(withRouter(ShopItemView))
+export default withRouter(ShopItemView)

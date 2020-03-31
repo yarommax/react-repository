@@ -1,6 +1,6 @@
-import { Grid } from '@material-ui/core';
-import ToolbarMenuItem from './ToolbarMenuItem';
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import ToolbarMenuItem from './ToolbarMenuItem';
 import StyledToolbar from './styled/StyledToolbar';
 
 const SECTIONS = [

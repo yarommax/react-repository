@@ -4,8 +4,8 @@ import { withRouter } from 'react-router';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import ShopItemCard from '../ShopItemCard/ShopItemCard';
-import Header from '../Header/Header';
 import { Loader } from '../Loader/Loader';
+import Header from '../Header/Header';
 
 const ShopList = ({getShopItems, items, loading}) => {
 	useEffect(() => {
@@ -26,8 +26,8 @@ const ShopList = ({getShopItems, items, loading}) => {
 				>
 					{
 						!loading && items ?
-								items.map(item =>
-									<ShopItemCard key={item._id} item={item}/>)
+							items.map(item =>
+								<ShopItemCard key={item._id} item={item}/>)
 							: <Loader color="primary"/>
 					}
 				</Grid>

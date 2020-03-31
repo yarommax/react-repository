@@ -1,146 +1,103 @@
-import React, { Component } from 'react';
-import compose from 'recompose/compose';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router';
 import {
 	Container,
 	Card,
 	Grid,
 	Typography,
-	Button,
-	TextField,
-	withStyles,
 	Select,
 	InputLabel,
 	MenuItem,
-	FormControl
+	CardContent,
 } from '@material-ui/core';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import PropTypes from 'prop-types';
-import { addNewItem } from '../../actions/shopItemsAction';
-import Header from '../Header/Header';
 import { NIKE, ADIDAS, PUMA} from '../../constant/shoesCategoryConstant';
+import Header from '../Header/Header';
+import StyledTextField from './styled/StyledTextField';
+import StyledFormControl from './styled/StyledFormControl';
+import StyledButton from './styled/StyledButton';
 
-const styles = theme => ({
-	cardTitle: {
-		marginBottom: theme.spacing(2),
-	},
-	textField: {
-		marginBottom: theme.spacing(2),
-		width: '100%'
-	},
-	saveButton: {
-		marginLeft: theme.spacing(3),
-		padding: '14px 20px',
-	},
-	formWrapper: {
-		padding: theme.spacing(3, 3),
-	},
-	formControl: {
-		minWidth: 120,
-	}
-});
+const NewItem = ({addNewItem}) => {
+	const initialState = {
+		name: '',
+		cost: '',
+		category: '',
+	};
+	const [newItemValues, setNewItemValues] = useState(initialState);
 
-class NewItem extends Component {
-	constructor(props) {
-		super(props);
-		this.onSubmit = this.onSubmit.bind(this);
-		this.onChangeField = this.onChangeField.bind(this);
-		this.state = {
-			name: '',
-			cost: 0,
-			category: '',
-		};
-	}
-
-	onChangeField(e) {
-		const {name, value } = e.target;
-		this.setState({
+	const onChangeField = (e) => {
+		const { name, value } = e.target;
+		setNewItemValues({
+			...newItemValues,
 			[name]: value,
-		})
-	}
+		});
+	};
 
-	onSubmit(e) {
+	const onSubmit = (e) => {
 		e.preventDefault();
-		const newItem = {
-			...this.state,
-		};
-		this.props.dispatch(addNewItem(newItem));
-	}
+		addNewItem(newItemValues);
+		resetFrom();
+	};
 
-	render() {
-		const { classes } = this.props;
+	const resetFrom = () => {
+		setNewItemValues(initialState);
+	};
 
-		return (
-			<>
-				<Header />
-				<Container maxWidth="lg">
-					<Grid container>
-						<Grid item lg={8} sm={12}>
-							<Card variant="outlined" className={classes.formWrapper}>
-								<Typography
-									variant="h3"
-									className={classes.cardTitle}
-								>Add new item</Typography>
-								<form>
-									<TextField
+	return (
+		<>
+			<Header />
+			<Container maxWidth="lg">
+				<Grid container>
+					<Grid item lg={8} sm={12}>
+						<Card variant="outlined">
+							<CardContent>
+								<Typography variant="h3" paragraph>Add new item</Typography>
+								<form onSubmit={onSubmit}>
+									<StyledTextField
 										name="name"
 										label="Item name"
 										variant="outlined"
-										className={classes.textField}
-										onChange={this.onChangeField}
+										value={newItemValues.name}
+										onChange={onChangeField}
 									/>
-									<TextField
+									<StyledTextField
 										name="cost"
 										label="Cost"
 										variant="outlined"
-										className={classes.textField}
-										onChange={this.onChangeField}
+										value={newItemValues.cost}
+										onChange={onChangeField}
 									/>
-									<FormControl variant="outlined" className={classes.formControl}>
+									<StyledFormControl variant="outlined">
 										<InputLabel
-											ref={this.labelRef}
 											id="category-label"
-										>Category</InputLabel>
+										>
+											Category
+										</InputLabel>
 										<Select
 											name="category"
-											value={this.state.category}
-											onChange={this.onChangeField}
+											value={newItemValues.category}
+											onChange={onChangeField}
 											labelWidth={65}
 										>
-											<MenuItem value={NIKE}>Nike</MenuItem>
-											<MenuItem value={ADIDAS}>Adidas</MenuItem>
-											<MenuItem value={PUMA}>Puma</MenuItem>
+											<MenuItem value={NIKE}>{NIKE}</MenuItem>
+											<MenuItem value={ADIDAS}>{ADIDAS}</MenuItem>
+											<MenuItem value={PUMA}>{PUMA}</MenuItem>
 										</Select>
-									</FormControl>
-
-									<Button
+									</StyledFormControl>
+									<StyledButton
 										size="large"
 										variant="outlined"
-										className={classes.saveButton}
-										onClick={this.onSubmit}
-									>Save</Button>
+										type="submit"
+									>
+										Save
+									</StyledButton>
 								</form>
-							</Card>
-						</Grid>
+							</CardContent>
+						</Card>
 					</Grid>
-				</Container>
-			</>
-		)
-	}
-}
-
-NewItem.propTypes = {
-	dispatch: PropTypes.func.isRequired,
-	handleChange: PropTypes.func,
+				</Grid>
+			</Container>
+		</>
+	)
 };
 
-const mapStateToProps = store => {
-	return {
-		...store,
-	}
-};
-
-export default compose(
-	withStyles(styles, NewItem),
-	connect(mapStateToProps)
-)(withRouter(NewItem));
+export default withRouter(NewItem);

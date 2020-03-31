@@ -1,7 +1,7 @@
 import React from 'react';
 import StyledToolbarMenuItem from './styled/StyledToolbarMenuItem';
 
-export default function ToolbarMenuItem({name, url}) {
+const ToolbarMenuItem = ({name, url}) => {
 	return (
 		<StyledToolbarMenuItem
 			key={name}
@@ -13,4 +13,6 @@ export default function ToolbarMenuItem({name, url}) {
 			{name}
 		</StyledToolbarMenuItem>
 	)
-}
+};
+
+export default ToolbarMenuItem;
