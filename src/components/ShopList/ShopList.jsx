@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router';
 import Container from '@material-ui/core/Container';
@@ -9,10 +9,14 @@ import Header from '../Header/Header';
 
 const ShopList = ({getShopItems, items, loading}) => {
 	useEffect(() => {
-		if(!items) {
-			getShopItems();
-		}
+		items || getShopItems();
 	});
+
+	const itemsList = useMemo(() => {
+		return !loading && items && items.map(item => {
+			return <ShopItemCard key={item._id} item={item}/>
+		})
+	}, [loading, items]);
 
 	return (
 		<>
@@ -24,12 +28,7 @@ const ShopList = ({getShopItems, items, loading}) => {
 					alignItems="center"
 					justify="center"
 				>
-					{
-						!loading && items ?
-							items.map(item =>
-								<ShopItemCard key={item._id} item={item}/>)
-							: <Loader color="primary"/>
-					}
+					{itemsList || <Loader color="primary"/>}
 				</Grid>
 			</Container>
 		</>

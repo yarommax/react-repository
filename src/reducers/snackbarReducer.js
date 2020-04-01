@@ -3,12 +3,8 @@ import {
 	SNACKBAR_ERROR,
 	SNACKBAR_INFO,
 	CLEAR_SNACKBAR,
-} from '../constant/snackbarConstant'
-import {
-	SUCCESS,
-	ERROR,
-	INFO,
-} from '../constant/snackbarStatusConstant'
+} from '../constant/snackbarConstant';
+import { SUCCESS,	ERROR, INFO } from '../constant/snackbarStatusConstant';
 
 export const initialState = {
 	message: '',

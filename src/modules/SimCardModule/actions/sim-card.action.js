@@ -4,16 +4,16 @@ import {
 	ON_CHANGE_USER_INFO,
 } from '../constant/simCardActionConstant';
 
-export const OnChangeUserInfo = (UserInfo) => ({
+export const onChangeUserInfo = (UserInfo) => ({
 	type: ON_CHANGE_USER_INFO,
 	payload: UserInfo
 });
 
-export const GetSimCardList = () => ({
+export const getSimCardList = () => ({
 	type: GET_SIM_CARD_LIST,
 });
 
-export const AssignSimCardToUser = (card) => ({
+export const assignSimCardToUser = (card) => ({
 	type: ASSIGN_SIM_CARD_TO_USER,
 	payload: card,
 });

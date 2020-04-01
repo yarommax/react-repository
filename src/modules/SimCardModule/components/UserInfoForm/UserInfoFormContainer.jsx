@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import UserInfoForm from './UserInfoForm';
-import { OnChangeUserInfo } from '../../actions/sim-card.action';
+import { onChangeUserInfo } from '../../actions/sim-card.action';
 
 const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-	OnChangeUserInfo: (userInfo) => dispatch(OnChangeUserInfo(userInfo)),
+	OnChangeUserInfo: (userInfo) => dispatch(onChangeUserInfo(userInfo)),
 });
 
 const UserInfoFormContainer = connect(mapStateToProps, mapDispatchToProps)(UserInfoForm);

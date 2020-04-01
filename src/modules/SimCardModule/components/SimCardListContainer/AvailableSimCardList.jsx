@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import SimCardIcon from '@material-ui/icons/SimCard';
 import AddIcon from '@material-ui/icons/Add';
-import { AssignSimCardToUser, GetSimCardList } from '../../actions/sim-card.action';
+import { assignSimCardToUser, getSimCardList } from '../../actions/sim-card.action';
 import { getAvailableSimCards } from '../../selectors/simCardSelector';
 import { showSuccessSnackBar } from '../../../../actions/snackbarAction';
 import StyledSimCardBlock from './styled/StyledSimCardBlock';
@@ -66,8 +66,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	GetSimCardList: () => dispatch(GetSimCardList()),
-	AssignSimCardToUser: (card) => dispatch(AssignSimCardToUser(card)),
+	GetSimCardList: () => dispatch(getSimCardList()),
+	AssignSimCardToUser: (card) => dispatch(assignSimCardToUser(card)),
 	showSuccessSnackBar: (message) => dispatch(showSuccessSnackBar(message)),
 });
 

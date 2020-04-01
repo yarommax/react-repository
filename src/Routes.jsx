@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import SimCardModule from './modules/SimCardModule/components/SimCardModule';
+import SimCardModule from './modules/SimCardModule/components/SimCardModule/SimCardModule';
 import SnackbarService from './components/SnackBar/Snackbar';
 import { ROUTES } from './constant/routeConstant'
 import ShopListContainer from './components/ShopList/ShopListContainer';
