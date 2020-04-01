@@ -13,13 +13,6 @@ import { call, put, takeLatest, delay } from 'redux-saga/effects';
 import { fetchShopItems, createNewItem, getItemById } from '../api/shopService';
 import { showErrorSnackBar, showSuccessSnackBar } from '../actions/snackbarAction';
 
-export function* watchShopItems() {
-	yield takeLatest(GET_SHOP_ITEMS, getShopItemsAsync);
-	yield takeLatest(ADD_NEW_ITEM, addNewItemAsync);
-	yield takeLatest(GET_ITEM_BY_ID, getItemByIdAsync);
-	yield takeLatest(ADD_NEW_ITEM_SUCCESS, addNewItemSuccessSnackbar);
-}
-
 function* getShopItemsAsync() {
 	try {
 		const res = yield call(fetchShopItems);
@@ -55,4 +48,9 @@ function* getItemByIdAsync(action) {
 	}
 }
 
-
+export function* watchShopItems() {
+	yield takeLatest(GET_SHOP_ITEMS, getShopItemsAsync);
+	yield takeLatest(ADD_NEW_ITEM, addNewItemAsync);
+	yield takeLatest(GET_ITEM_BY_ID, getItemByIdAsync);
+	yield takeLatest(ADD_NEW_ITEM_SUCCESS, addNewItemSuccessSnackbar);
+}
