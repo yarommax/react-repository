@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Grid from '@material-ui/core/Grid';
 import ToolbarMenuItem from './ToolbarMenuItem';
 import StyledToolbar from './styled/StyledToolbar';
@@ -22,34 +22,21 @@ const SECTIONS = [
 	},
 ];
 
-export default function HeaderToolbar() {
+const HeaderToolbar = () => {
+	const menuItems = useMemo(() => {
+		return SECTIONS && SECTIONS.map(section => (
+			<ToolbarMenuItem key={section.name} name={section.name} url={section.url}/>
+		));
+	}, []);
+
 	return (
 		<StyledToolbar>
 			<Grid item lg={12}>
-				{ SECTIONS && SECTIONS.map(section => (
-					<ToolbarMenuItem key={section.name} name={section.name} url={section.url}/>
-				))}
+				{ menuItems }
 			</Grid>
+		</ StyledToolbar>
+	);
+};
 
-			{/*<Grid item lg={4}>*/}
-			{/*  <div className={classes.toolbarActions}>*/}
-			{/*    <IconButton color="inherit">*/}
-			{/*      <SearchRoundedIcon/>*/}
-			{/*    </IconButton>*/}
-			{/*    <IconButton color="inherit">*/}
-			{/*      <Badge badgeContent={4} color="secondary">*/}
-			{/*        <ShoppingCartRoundedIcon/>*/}
-			{/*      </Badge>*/}
-			{/*    </IconButton>*/}
-			{/*    <IconButton color="inherit">*/}
-			{/*      <FavoriteRoundedIcon/>*/}
-			{/*    </IconButton>*/}
-			{/*    <Button variant="outlined" size="small">*/}
-			{/*      Sign in*/}
-			{/*    </Button>*/}
-			{/*  </div>*/}
-			{/*</Grid>*/}
-		</StyledToolbar>
-	)
+export default HeaderToolbar;
 
-}
