@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { withRouter } from 'react-router';
 import {
 	Container,
@@ -42,20 +42,30 @@ const SimCardModule = () => {
 	const [activeStep, setActiveStep] = useState(0);
 	const steps = getSteps();
 
+	const resetActiveStep = useCallback(() =>
+		setActiveStep(0), []);
+	const nextActiveStep = useCallback(() =>
+		setActiveStep(activeStep > 3 ? 0 : activeStep + 1), [activeStep]);
+	const prevActiveStep = useCallback(() =>
+		setActiveStep(activeStep - 1), [activeStep]);
+
+	const stepList = useMemo(() => {
+		return steps && steps.map(label => {
+			return (
+				<Step key={label}>
+					<StepLabel>{label}</StepLabel>
+				</Step>
+			);
+		});
+	}, [steps]);
+
 	return (
 		<Container>
 			<Card>
 				<CardContent>
 					<div>
-						<Stepper
-							activeStep={activeStep}
-							alternativeLabel
-						>
-							{steps.map(label => (
-								<Step key={label}>
-									<StepLabel>{label}</StepLabel>
-								</Step>
-							))}
+						<Stepper activeStep={activeStep} alternativeLabel>
+							{stepList}
 						</Stepper>
 						<div>
 							{activeStep === steps.length ? (
@@ -68,7 +78,7 @@ const SimCardModule = () => {
 										All steps completed
 									</Typography>
 									<StyledResetButton
-										onClick={() => setActiveStep(0)}
+										onClick={resetActiveStep}
 										color="default"
 										variant="contained"
 									>
@@ -86,7 +96,7 @@ const SimCardModule = () => {
 					<div>
 						<Button
 							disabled={activeStep === 0}
-							onClick={() => setActiveStep(activeStep-1)}
+							onClick={prevActiveStep}
 							variant="contained"
 						>
 							Back
@@ -95,7 +105,7 @@ const SimCardModule = () => {
 						<Button
 							variant="contained"
 							color="primary"
-							onClick={() => setActiveStep(activeStep > 3 ? 0 : activeStep + 1)}
+							onClick={nextActiveStep}
 						>
 							{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
 						</Button>

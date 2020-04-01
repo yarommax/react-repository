@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Icon, Snackbar, IconButton } from '@material-ui/core';
 import { clearSnackBar } from '../../actions/snackbarAction';
@@ -9,10 +9,7 @@ export default function SnackbarService() {
 	const { message, type, snackbarOpen } = useSelector(
 		state => state.snackBar,
 	);
-
-	const handleClose = () => {
-		dispatch(clearSnackBar());
-	};
+	const handleClose = useCallback(() => dispatch(clearSnackBar()), [dispatch]);
 
 	return (message && type &&
 		<Snackbar

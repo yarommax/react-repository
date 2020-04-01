@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import {
 	Typography,
@@ -16,9 +16,7 @@ import StyledCardMedia from '../ShopItemView/styled/StyledCardMedia';
 
 const ShopItemCard = ({item}) => {
 	const history = useHistory();
-	function handleOpenItemView() {
-		history.push(`${ROUTES.SHOP_ITEM}/${item._id}`);
-	}
+	const handleOpenItemView = useCallback(()=> history.push(`${ROUTES.SHOP_ITEM}/${item._id}`), [history, item]);
 
 	return (
 		<Grid item lg={3} md={4} sm={6} xs={12}>

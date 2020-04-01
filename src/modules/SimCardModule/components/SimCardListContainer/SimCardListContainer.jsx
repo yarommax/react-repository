@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import AvailableSimCardList from './AvailableSimCardList';
-import UserSimCardList from './UserSimCardList';
+import UserSimCardListContainer from './UserSimCardList/UserSimCardListContainer';
+import AvailableSimCardListContainer from './AvailableSimCardList/AvailableSimCardListContainer';
 
 const SimCardListContainer = () => {
 	return (
@@ -12,11 +12,11 @@ const SimCardListContainer = () => {
 			>Sim-card list</Typography>
 			<div>
 				<Typography variant="h6">Available sim-cards:</Typography>
-				<AvailableSimCardList />
+				<AvailableSimCardListContainer />
 			</div>
 			<div>
 				<Typography variant="h6">User sim-cards:</Typography>
-				<UserSimCardList />
+				<UserSimCardListContainer />
 			</div>
 		</div>
 	)
