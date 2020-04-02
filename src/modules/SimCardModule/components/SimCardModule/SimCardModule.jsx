@@ -11,7 +11,7 @@ import {
 	Typography,
 } from '@material-ui/core';
 import UserInfoFormContainer from '../UserInfoForm/UserInfoFormContainer';
-import SimCardListContainer from '../SimCardListContainer/SimCardListContainer';
+import SimCardListContainer from '../SimCardList/SimCardListContainer';
 import SummaryContainer from '../Summary/SummaryContainer';
 import { SIM_CARD_STEP, SUMMARY_INFO, USER_INFO_STEP } from '../../constant/stepConstant';
 import StyledCardActions from './styled/StyledCardActions';
